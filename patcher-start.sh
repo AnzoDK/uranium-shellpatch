@@ -143,6 +143,7 @@ if [ "$(${abs} -m pip freeze | grep requests)" == "" ]; then
   echo "${TEXT_WARN}Attempting to install Requests...${TEXT_NONE}"
   sudo -H ${abs} -m pip install requests
 fi
-
+echo "Disabling IPv6..."
+sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 $abs "${PWD}/.patcher.py" "${PWD}" "$KERNELNAME" "$BASE_URL"
 Exit
